@@ -1,0 +1,10 @@
+
+<table>
+	<%BlogComment.where(blog_post_id:params[:blog_post_id]).each do |cmts|%>
+	<tr>
+			<td><%=cmts.comment%></td>
+			
+	</tr>
+
+	<%end%>
+</table>

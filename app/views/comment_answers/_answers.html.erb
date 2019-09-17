@@ -1,0 +1,7 @@
+<%= form_tag submit_answer_path, remote: true, method: :post, id: "comment_answer" do %>
+          <%= text_field_tag :answer, '', placeholder: "Type Answer"%>
+          <%= hidden_field_tag :blog_comment_id, params[:blog_comment_id]%>
+           <%= button_tag 'Submit', class: 'btn btn-primary',
+                           data: { disable_with: "<i class='fa fa-refresh fa-spin'>
+      </i> Submitting Changes..."} %>
+          <%end%>

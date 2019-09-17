@@ -1,0 +1,31 @@
+<table>
+ 	<%obj_blog_post.blog_comments.each do |cmt|%>
+		<tr>
+			<td><%=cmt.comment%></td>
+			<tr>
+				<td>
+					<ul>
+						<%cmt.comment_answers.each do |cmt_ans|%>
+				<li><%=cmt_ans.reply%> </li>
+				<%end%>
+			</ul>
+				</td>
+			</tr>
+			<td>
+				<div id="<%=cmt.id%>"></div>
+			</td>
+			<td>
+				<div id="myid"></div>
+				<%= form_tag '/comment_answers', remote: true, method: :post, id: "answer" do %>
+          
+	          		<%= hidden_field_tag :blog_comment_id, cmt.id%>
+	          		 <%= button_tag 'reply', class: 'btn btn-primary',
+	                           data: { disable_with: "<i class='fa fa-refresh fa-spin'>
+	     			 </i> Submitting Changes..."} %>
+        		 <%end%>
+			</td>
+		</tr>
+ 	<%end%>
+ </table>
+
+			

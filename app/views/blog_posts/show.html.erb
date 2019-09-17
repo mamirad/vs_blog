@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog_post.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @blog_post.user.id %>
+</p>
+<p>
+
+  <strong>Picture:</strong>
+  
+  <%= image_tag(@blog_post.pictures.first.soft_pic.url, size: "50x50")
+  %>
+</p>
+ <div id="blog_comments">
+<%= render partial: 'blog_comments/blog_comments', locals: {obj_blog_post: @blog_post} %>
+ </div>
+
+
+     <%= form_tag '/blog_comments', remote: true, method: :post, id: "blog_comment" do %>
+          <%= text_field_tag :comment, '', placeholder: "Type comment"%>
+          <%= hidden_field_tag :blog_post_id, @blog_post.id%>
+           <%= button_tag 'Submit', class: 'btn btn-primary',
+                           data: { disable_with: "<i class='fa fa-refresh fa-spin'>
+      </i> Submitting Changes..."} %>
+          <%end%>
+
+
+
+<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
+<%= link_to 'Back', blog_posts_path %>
